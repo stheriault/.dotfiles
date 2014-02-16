@@ -1,0 +1,50 @@
+" general vim behavior
+set nocompatible " explicitly get out of vi-compatibility mode
+set noexrc " don't use local version of .(g)vimrc, .exrc
+set history=9999 " large history stack of : commands
+set timeoutlen=500 " timeout length in ms
+set mouse=a " use the mouse in all modes
+set backspace=indent,eol,start " make backspace behave as expected
+filetype plugin indent on " ????
+set laststatus=2 " always display the status line
+set noshowmode " don't show the vim mode (because it's in the airline)
+set clipboard+=unnamed " use the windows clipboard
+set hidden " make buffers hidden when abandoned (no need to save when changing buffers)
+
+" static UI
+set ruler " show the line/column number in the status bar
+set showcmd
+set number
+
+" dynamic UI
+set showmatch
+
+" file handling
+set ffs=unix,dos,mac
+set encoding=utf8
+
+" colors and fonts
+syntax enable " enable syntax highlighting
+set t_Co=256 " enable 256 colors in vim
+colorscheme desert " use the desert colorscheme for syntax highlighting
+set background=dark " use a dark background
+
+" space/tab/indentation controls
+set list
+set listchars=tab:>-,trail:-
+set expandtab
+set shiftwidth=4 " auto-indent amount when using cindent, >>, << and stuff like that
+set softtabstop=4 " when hitting tab or backspace, how many spaces should a tab be
+set tabstop=8 " real tabs should be 8, and they will show with set list on
+
+" mappings
+imap jk <Esc>
+nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+" pathogen plugin
+runtime bundle/pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
+" airline plugin
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1

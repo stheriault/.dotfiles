@@ -1,0 +1,3 @@
+DEPENDS tlib_vim
+DEPENDS addon-mw-utils
+https://github.com/garbas/vim-snipmate.git
