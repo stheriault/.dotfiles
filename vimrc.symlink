@@ -39,7 +39,11 @@ set tabstop=8 " real tabs should be 8, and they will show with set list on
 
 " mappings
 imap jk <Esc>
-nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" nnoremap <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+
+imap uu _
+imap yy =
+imap df ()<LEFT>
 
 " pathogen plugin
 runtime bundle/pathogen/autoload/pathogen.vim

@@ -27,7 +27,7 @@ function install_plugin() {
             else
                 pushd $plugin_dir > /dev/null
                 echo "fetching $1"
-                git fetch
+                git pull
                 echo " "
                 popd > /dev/null
             fi
