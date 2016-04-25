@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+
+configFile='dotfiles.conf'
+
+# get the items in the config file that aren't commented out
+#   ie, the lines that don't begin with a hash symbol (#)
+dotfilesToLink=$(egrep '^[^#]' $configFile)
+
+echo $dotfileToLink
