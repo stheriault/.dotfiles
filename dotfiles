@@ -7,4 +7,13 @@ configFile='dotfiles.conf'
 #   ie, the lines that don't begin with a hash symbol (#)
 dotfilesToLink=$(egrep '^[^#]' $configFile)
 
-echo $dotfileToLink
+# loop through the dotfiles that we want to link
+for currentDotfile in $dotfilesToLink; do
+    # init
+
+    # backup old file
+
+    # link
+
+    # initialize
+done
