@@ -3,11 +3,14 @@
 
 configFile='dotfiles.conf'
 
+# date and time, in a parsable format
+datetime=$(date '+%Y%m%d%H%M%S')
+
 # get the path to this script
 dotfilesRootPath=$(cd $(dirname $0); pwd -P)
 
 # get the items in the config file that aren't commented out
-#   ie, the lines that don't begin with a hash symbol (#)
+#   ie, the lines that don't begin with a pound/hash symbol (#)
 configItemsToProcess=$(egrep '^[^#]' $configFile)
 
 # loop through the dotfiles that we want to link
@@ -19,7 +22,7 @@ for currentConfigItem in $configItemsToProcess; do
   dotfileName=$(basename $sourcePath)
   destPath=$HOME/.$dotfileName
 
-  # init
+  # initialize
 
   # link
   # backup old file
@@ -27,11 +30,13 @@ for currentConfigItem in $configItemsToProcess; do
   # if the destination file already exists
   if [[ -e $destPath ]]; then 
     # if already linked to the dotfile
-    if [[ $(readlink -f $destPath) == $sourcePath ]]; then 
-      echo "$destPath already linked"
+    if [[ $(readlink -f $destPath) != $sourcePath ]]; then 
+      # create the name for the backup directory
+      backupPath=$dotfilesRootPath/backup/$datetime
+
+      # create the backup dir
+      mkdir -p $backupPath
     fi
     echo "$destPath already exists"
   fi
-
-  # initialize
 done
