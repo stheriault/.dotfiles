@@ -3,17 +3,33 @@
 
 configFile='dotfiles.conf'
 
+# get the path to this script
+dotfilesRootPath=$(cd $(dirname $0); pwd -P)
+
 # get the items in the config file that aren't commented out
 #   ie, the lines that don't begin with a hash symbol (#)
-dotfilesToLink=$(egrep '^[^#]' $configFile)
+configItemsToProcess=$(egrep '^[^#]' $configFile)
 
 # loop through the dotfiles that we want to link
-for currentDotfile in $dotfilesToLink; do
-    # init
+for currentConfigItem in $configItemsToProcess; do
+  echo "processing $currentConfigItem"
 
-    # backup old file
+  # determine the names of things
+  sourcePath=$dotfilesRootPath/$currentConfigItem
+  dotfileName=$(basename $sourcePath)
+  destPath=$HOME/.$dotfileName
 
-    # link
+  # init
 
-    # initialize
+  # link
+  # backup old file
+  #   if a link.sh script is available, it is responsible for handling backsups
+  if [[ -e $destPath ]]; then # if the destination file already exists
+    if [[ $(readlink -f $destPath) == $sourcePath ]]; then # if already linked to the dotfile
+      echo "$destPath already linked"
+    fi
+    echo "$destPath already exists"
+  fi
+
+  # initialize
 done
