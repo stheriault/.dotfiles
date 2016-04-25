@@ -24,8 +24,10 @@ for currentConfigItem in $configItemsToProcess; do
   # link
   # backup old file
   #   if a link.sh script is available, it is responsible for handling backsups
-  if [[ -e $destPath ]]; then # if the destination file already exists
-    if [[ $(readlink -f $destPath) == $sourcePath ]]; then # if already linked to the dotfile
+  # if the destination file already exists
+  if [[ -e $destPath ]]; then 
+    # if already linked to the dotfile
+    if [[ $(readlink -f $destPath) == $sourcePath ]]; then 
       echo "$destPath already linked"
     fi
     echo "$destPath already exists"
