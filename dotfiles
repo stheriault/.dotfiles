@@ -28,14 +28,14 @@ for currentConfigItem in $configItemsToProcess; do
   linkScriptPath=$dotfileDir/link.$dotfileName.sh
 
   # initialize
-  if [[ -e $initScriptPath ]]; then
+  if [[ -f $initScriptPath ]]; then
     echo "Found init script"
   fi
 
   # link
   # backup old file
   #   if a link.sh script is available, it is responsible for handling backups
-  if [[ -e $linkScriptPath ]]; then
+  if [[ -f $linkScriptPath ]]; then
     echo "Found link script"
     $linkScriptPath
   else
