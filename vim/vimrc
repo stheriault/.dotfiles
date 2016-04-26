@@ -1,0 +1,42 @@
+" -------------------------------- General ---------------------------------{{{1
+" Disable compatiblity with vi
+set nocompatible
+
+" -------------------------------- Text Editing ----------------------------{{{1
+" allow backspace/del over autoindent, line breaks, and start of insert action
+set backspace=indent,eol,start
+
+" -------------------------------- File Handling ---------------------------{{{1
+" Hide buffer instead of unloading it when swapping buffers
+set hidden
+
+" -------------------------------- User Interface --------------------------{{{1
+" use a better commandline completion
+set wildmenu
+
+" show partial commands as they are typed
+set showcmd
+
+" -------------------------------- Searching -------------------------------{{{1
+" highlight matches as a search command is typed
+set incsearch
+
+" highlight all matches of a search
+set hlsearch
+
+" -------------------------------- Indentation and Spacing -----------------{{{1
+" enable filetype-specific indentation
+filetype indent on
+
+" when opening a new line and no filetype-specific indenting is enabled, keep
+" the same indent as the previous line
+set autoindent
+" -------------------------------- Colors and Fonts-------------------------{{{1
+" enable syntax highlighting
+syntax on
+
+" -------------------------------- Plugins ---------------------------------{{{1
+" enable filetype-specific plugins
+filetype plugin on
+
+" vim:foldmethod=marker:foldlevel=0
