@@ -75,6 +75,9 @@ set showcmd
 " show cursor position in the status line
 set ruler
 
+" show line numbers on the left
+set number
+
 " always display the status line, even if only one window is displayed
 set laststatus=2
 
