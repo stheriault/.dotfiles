@@ -4,7 +4,7 @@
 configFile='dotfiles.conf'
 
 # date and time, in a parsable format
-datetime=$(date '+%Y%m%d%H%M%S')
+datetime=$(date '+%Y%m%d_%H%M%S')
 
 # get the path to this script
 dotfilesRootPath=$(cd $(dirname $0); pwd -P)
@@ -20,23 +20,44 @@ for currentConfigItem in $configItemsToProcess; do
   # determine the names of things
   sourcePath=$dotfilesRootPath/$currentConfigItem
   dotfileName=$(basename $sourcePath)
+  dotfileDir=$(dirname $sourcePath)
+
   destPath=$HOME/.$dotfileName
 
+  initScriptPath=$dotfileDir/init.$dotfileName.sh
+  linkScriptPath=$dotfileDir/link.$dotfileName.sh
+
   # initialize
+  if [[ -e $initScriptPath ]]; then
+    echo "Found init script"
+  fi
 
   # link
   # backup old file
-  #   if a link.sh script is available, it is responsible for handling backsups
-  # if the destination file already exists
-  if [[ -e $destPath ]]; then 
-    # if already linked to the dotfile
-    if [[ $(readlink -f $destPath) != $sourcePath ]]; then 
-      # create the name for the backup directory
-      backupPath=$dotfilesRootPath/backup/$datetime
+  #   if a link.sh script is available, it is responsible for handling backups
+  if [[ -e $linkScriptPath ]]; then
+    echo "Found link script"
+    $linkScriptPath
+  else
+    # if the destination file already exists
+    if [[ -e $destPath ]]; then 
+      # if the destination file isn't linked to the dotfiles
+      if [[ $(readlink -f $destPath) != $sourcePath ]]; then 
+        # create the name for the backup directory
+        backupPath=$dotfilesRootPath/backup/$datetime
 
-      # create the backup dir
-      mkdir -p $backupPath
+        # create the backup dir
+        mkdir -p $backupPath
+
+        # create a backup of the old dotfile
+        cp -r $destPath $backupPath
+      fi
+
+      # now that it's backed-up, delete it
+      rm -r $destPath
     fi
-    echo "$destPath already exists"
+
+    # link the dotfile
+    ln -s $sourcePath $destPath
   fi
 done
