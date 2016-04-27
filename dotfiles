@@ -15,7 +15,7 @@ configItemsToProcess=$(egrep '^[^#]' $configFile)
 
 # loop through the dotfiles that we want to link
 for currentConfigItem in $configItemsToProcess; do
-  echo "processing $currentConfigItem"
+  echo "*** processing $currentConfigItem ***"
 
   # determine the names of things
   sourcePath=$dotfilesRootPath/$currentConfigItem
@@ -24,19 +24,21 @@ for currentConfigItem in $configItemsToProcess; do
 
   destPath=$HOME/.$dotfileName
 
-  initScriptPath=$dotfileDir/init.$dotfileName.sh
+  preLinkScriptPath=$dotfileDir/pre.$dotfileName.sh
   linkScriptPath=$dotfileDir/link.$dotfileName.sh
+  postLinkScriptPath=$dotfileDir/post.$dotfileName.sh
 
-  # initialize
-  if [[ -f $initScriptPath ]]; then
-    echo "Found init script"
+  # pre link script
+  if [[ -f $preLinkScriptPath ]]; then
+    echo "Executing pre-link script $preLinkScriptPath"
+    $preLinkScriptPath
   fi
 
   # link
   # backup old file
   #   if a link.sh script is available, it is responsible for handling backups
   if [[ -f $linkScriptPath ]]; then
-    echo "Found link script"
+    echo "Executing link script $linkScriptPath"
     $linkScriptPath
   else
     # if the destination file already exists
@@ -46,6 +48,9 @@ for currentConfigItem in $configItemsToProcess; do
         # create the name for the backup directory
         backupPath=$dotfilesRootPath/backup/$datetime
 
+        # std output
+        echo "Backing up $destPath to $backupPath"
+
         # create the backup dir
         mkdir -p $backupPath
 
@@ -53,11 +58,26 @@ for currentConfigItem in $configItemsToProcess; do
         cp -r $destPath $backupPath
       fi
 
+      # std output
+      echo "Removing the old dotfile $destPath"
+
       # now that it's backed-up, delete it
       rm -r $destPath
     fi
 
+    # std output
+    echo "linking $destPath->$sourcePath"
+
     # link the dotfile
     ln -s $sourcePath $destPath
   fi
+
+  # post link script
+  if [[ -f $postLinkScriptPath ]]; then
+    echo "Executing post-link script $postLinkScriptPath"
+    $postLinkScriptPath
+  fi
+
+  # add a blank line
+  echo
 done

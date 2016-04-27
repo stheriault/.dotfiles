@@ -23,6 +23,24 @@ set listchars=tab:>-,trail:-
 " disable wrapping
 set nowrap
 
+" -------------------------------- Vundle ----------------------------------{{{1
+filetype off
+
+" set the runtime path to include Vundle and initialize
+rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" snipMate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" All of the plugins must be added before this line
+call vundle#end()
+
 " -------------------------------- Text Editing and Motion -----------------{{{1
 "
 " allow backspace/del over autoindent, line breaks, and start of insert action
