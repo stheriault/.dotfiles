@@ -38,6 +38,9 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 
+" NERD tree
+Plugin 'scrooloose/nerdtree'
+
 " All of the plugins must be added before this line
 call vundle#end()
 
