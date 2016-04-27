@@ -4,6 +4,15 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+# [ -z "$PS1" ] && return # some people use this instead
+
+#-------------- Source Global Definitions (if any) -------------------------{{{1
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc   # --> Source /etc/bashrc, if present.
+fi
+
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
+
+# vim:foldmethod=marker:foldlevel=0

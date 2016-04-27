@@ -147,7 +147,7 @@ colorscheme desert
 
 " Create a warning after 80 characters
 execute "set colorcolumn=" . join(range(81,335), ',')
-highlight ColorColumn ctermbg=232 guibg=#111111
+highlight ColorColumn ctermbg=234 guibg=#111111
 
 " -------------------------------- Filetype-Specific Behavior --------------{{{1
 "
