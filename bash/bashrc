@@ -56,9 +56,16 @@ ALERT=${BWhite}${On_Red} # Bold White on red background
 # echo -e '\E[38;2;255;0;0mThis is red' # foreground
 # echo -e '\E[48;2;255;0;0mThis is red\033[0m' # background
 
-#-------------- Extra Stuff ------------------------------------------------{{{1
+#-------------- Aliases ----------------------------------------------------{{{1
 
 alias ls='ls --color=auto'
+
+#-------------- Prompt -----------------------------------------------------{{{1
+
 PS1='[\u@\h \W]\$ '
+
+#-------------- Tailoring Less ---------------------------------------------{{{1
+#-------------- Extra Stuff ------------------------------------------------{{{1
+
 
 # vim:foldmethod=marker:foldlevel=0
