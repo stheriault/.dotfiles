@@ -72,13 +72,13 @@ else # Connected on local machine.
 fi
 
 if [ -n "$PS1_host" ]; then
-  PS1_host="@\[$PS1_host\]\h\[$NC\] "
+  PS1_host="@\[$PS1_host\]\h\[$NC\]"
 fi
 
 # get a colored string for the logged in user name. Empty string if not SSHed or
 # SUed as someone else.
 if [[ ${USER} == "root" ]]; then # User is root.
-  PS1_user=${Red}
+  PS1_user=${ALERT}
 elif [[ ${USER} != $(logname) ]]; then # User is not login user.
   PS1_user=${BRed}
 elif [ -n "$PS1_host" ]; then # we are connected to a remote computer
@@ -91,9 +91,14 @@ if [ -n "$PS1_user" ]; then
   PS1_user="\[$PS1_user\]\u\[$NC\]"
 fi
 
+if [ -z "$PS1_host" ]; then # if no host, then append a space
+  PS1_user="$PS1_user "
+fi
+
 # get a string for the working directory
 PS1_dir="\[${BGreen}\]\W>\[$NC\] "
 
+# putting it all together
 PS1="$PS1_user$PS1_host$PS1_dir"
 
 #-------------- Tailoring Less ---------------------------------------------{{{1
