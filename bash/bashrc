@@ -7,7 +7,7 @@
 [[ $- != *i* ]] && return
 # [ -z "$PS1" ] && return # some people use this instead
 
-#-------------- Source Global Definitions (if any) -------------------------{{{1
+#-------------- Source Any Global Definitions ------------------------------{{{1
 
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc   # --> Source /etc/bashrc, if present.
@@ -62,9 +62,42 @@ alias ls='ls --color=auto'
 
 #-------------- Prompt -----------------------------------------------------{{{1
 
-PS1='[\u@\h \W]\$ '
+# get a colored string for the hostname if connected to a remote machine
+if [ -n "${SSH_CONNECTION}" ]; then # Connected on remote machine, via ssh
+  PS1_host=${BGreen}
+elif [[ "${DISPLAY%%:0*}" != "" ]]; then # Connected on remote machine, not ssh
+  PS1_host=${SALERT}
+else # Connected on local machine.
+  PS1_host=
+fi
+
+if [ -n "$PS1_host" ]; then
+  PS1_host="@\[$PS1_host\]\h\[$NC\] "
+fi
+
+# get a colored string for the logged in user name. Empty string if not SSHed or
+# SUed as someone else.
+if [[ ${USER} == "root" ]]; then # User is root.
+  PS1_user=${Red}
+elif [[ ${USER} != $(logname) ]]; then # User is not login user.
+  PS1_user=${BRed}
+elif [ -n "$PS1_host" ]; then # we are connected to a remote computer
+  PS1_user=${BGreen}
+else
+  PS1_user=
+fi
+
+if [ -n "$PS1_user" ]; then
+  PS1_user="\[$PS1_user\]\u\[$NC\]"
+fi
+
+# get a string for the working directory
+PS1_dir="\[${BGreen}\]\W>\[$NC\] "
+
+PS1="$PS1_user$PS1_host$PS1_dir"
 
 #-------------- Tailoring Less ---------------------------------------------{{{1
+
 #-------------- Extra Stuff ------------------------------------------------{{{1
 
 
