@@ -72,7 +72,7 @@ else # Connected on local machine.
 fi
 
 if [ -n "$PS1_host" ]; then
-  PS1_host="@\[$PS1_host\]\h\[$NC\]"
+  PS1_host="@\[$PS1_host\]\h\[$NC\] "
 fi
 
 # get a colored string for the logged in user name. Empty string if not SSHed or
