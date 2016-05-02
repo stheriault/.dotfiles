@@ -89,10 +89,11 @@ fi
 
 if [ -n "$PS1_user" ]; then
   PS1_user="\[$PS1_user\]\u\[$NC\]"
-fi
 
-if [ -z "$PS1_host" ]; then # if no host, then append a space
-  PS1_user="$PS1_user "
+  if [ -z ${PS1_host} ]; then # if no host, then append a space
+    echo "here"
+    PS1_user="$PS1_user "
+  fi
 fi
 
 # get a string for the working directory
