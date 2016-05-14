@@ -41,6 +41,9 @@ Plugin 'garbas/vim-snipmate'
 " NERD tree
 Plugin 'scrooloose/nerdtree'
 
+" Conque GDB
+Plugin 'Conque-GDB'
+
 " All of the plugins must be added before this line
 call vundle#end()
 
