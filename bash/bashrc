@@ -18,6 +18,10 @@ fi
 # add ~/bin to the path
 PATH=$PATH:$HOME/bin
 
+#-------------- ENVIRONMENTAL VARIABLES ------------------------------------{{{1
+
+export EDITOR=vim
+
 #-------------- Colors -----------------------------------------------------{{{1
 # These are ANSI escape sequences to change the color of the terminal window.
 # See https://en.wikipedia.org/wiki/ANSI_escape_code for reference
@@ -97,6 +101,9 @@ alias la='ll -A'           #  Show hidden files.
 # tree
 alias tree='tree -C'
 
+# vim
+alias vi='vim'
+
 #-------------- Prompt -----------------------------------------------------{{{1
 # TODO document the format of PS1 that I used
 
@@ -141,7 +148,6 @@ PS1="$PS1_user$PS1_host$PS1_dir"
 
 # TODO PROMPT_COMMAND
 
-#-------------- Tailoring Less ---------------------------------------------{{{1
 
 #-------------- Extra Stuff ------------------------------------------------{{{1
 
