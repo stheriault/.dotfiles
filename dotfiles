@@ -39,12 +39,13 @@ for currentConfigItem in $configItemsToProcess; do
   #   if a link.sh script is available, it is responsible for handling backups
   if [[ -f $linkScriptPath ]]; then
     echo "Executing link script $linkScriptPath"
-    $linkScriptPath
+    backupPath=$dotfilesRootPath/backup/$datetime
+    $linkScriptPath $backupPath
   else
     # if the destination file already exists
-    if [[ -e $destPath ]]; then 
+    if [[ -e $destPath ]]; then
       # if the destination file isn't linked to the dotfiles
-      if [[ $(readlink -f $destPath) != $sourcePath ]]; then 
+      if [[ $(readlink -f $destPath) != $sourcePath ]]; then
         # create the name for the backup directory
         backupPath=$dotfilesRootPath/backup/$datetime
 

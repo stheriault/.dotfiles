@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# this function shortens a long path to less than a desired number of characters
+# by shortening the directory names to one character.  for example,
+# /tmp/this/is/a/long/path/name/yada/Yada may become /t/t/i/a/l/p/name/yada/Yada
+
+# default values for number of chars to shortent to and the path to shorten
+path=$(pwd)
+maxChars=40
+
+# parse the commandline inputs
+while [[ $# > 0 ]]
+do
+  key="$1"
+  shift
+
+  case $key in
+    -h|--help)
+      #print usage info
+      echo "Usage: shortenPath [-n N] [path]"
+      exit
+      ;;
+    -n)
+      maxChars="$1"
+      shift
+      ;;
+    *)  # this is the path
+      path=$key
+    esac
+done
+
+
+# shorten then home direectory to ~
+path=$(echo $path | sed -e "s!$HOME!~!");
+
+# recuresively shorten the directories starting from the left, until the number
+# of chars in the path is less than maxChars
+
+function makeShorter() # $1 maxChars, $2 path
+{
+  if (( ${#2} > "$1" )); then
+    shortened=$(echo $2 | sed -re "s!([^/])[^/]{1,}/!\1/!")
+    if [[ $2 == $shortened ]]; then
+      echo -en $2
+    else
+      echo -en $(makeShorter $1 $shortened)
+    fi
+    #echo -en $shortened
+  else
+    echo -en "$2"
+  fi
+}
+
+makeShorter $maxChars $path
+
+# syntax=bash

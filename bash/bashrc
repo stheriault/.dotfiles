@@ -13,6 +13,11 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc   # --> Source /etc/bashrc, if present.
 fi
 
+#-------------- Path -------------------------------------------------------{{{1
+
+# add ~/bin to the path
+PATH=$PATH:$HOME/bin
+
 #-------------- Colors -----------------------------------------------------{{{1
 # These are ANSI escape sequences to change the color of the terminal window.
 # See https://en.wikipedia.org/wiki/ANSI_escape_code for reference
@@ -62,7 +67,6 @@ alias ls='ls --color=auto'
 
 #-------------- Prompt -----------------------------------------------------{{{1
 # TODO document the format of PS1 that I used
-# TODO use a shortened directory string, eg ~/t/D/s/w/dirname
 
 # get a colored string for the hostname if connected to a remote machine
 if [ -n "${SSH_CONNECTION}" ]; then # Connected on remote machine, via ssh
@@ -98,20 +102,7 @@ if [ -n "$PS1_user" ]; then
   fi
 fi
 
-# get a string for the working directory
-# TODO add documentation
-# TODO $1 takes a directory, $2 takes a max unshortened length
-function shortenPath()
-{
-  wd=$(pwd | sed -e "s!$HOME!~!");
-  if [[ ${#wd} > $1 ]]; then
-    echo -en $(echo $wd | sed -re "s!([^/])[^/]+/!\1/!g")
-  else
-    echo -en "$wd"
-  fi
-}
-
-PS1_dir="\[${BGreen}\]\$(shortenPath 30)>\[$NC\] "
+PS1_dir="\[${BGreen}\]\$(shortenPath)>\[$NC\] "
 
 # putting it all together
 PS1="$PS1_user$PS1_host$PS1_dir"
