@@ -5,7 +5,6 @@
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-# [ -z "$PS1" ] && return # some people use this instead
 
 #-------------- Source Any Global Definitions ------------------------------{{{1
 
@@ -20,7 +19,7 @@ PATH=$PATH:$HOME/bin
 
 #-------------- ENVIRONMENTAL VARIABLES ------------------------------------{{{1
 
-export EDITOR=vim
+export EDITOR=vim # TODO there are other svneditor,giteditor,visual, etc
 
 #-------------- Colors -----------------------------------------------------{{{1
 # These are ANSI escape sequences to change the color of the terminal window.
