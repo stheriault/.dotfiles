@@ -103,6 +103,9 @@ alias tree='tree -C'
 # vim
 alias vi='vim'
 
+#grep
+alias grep='grep --color=auto'
+
 #-------------- Prompt -----------------------------------------------------{{{1
 # TODO document the format of PS1 that I used
 
