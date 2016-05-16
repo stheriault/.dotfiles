@@ -8,7 +8,7 @@ set noerrorbells
 set novisualbell
 
 " Quickly time out on keycodes, but never time out on mappings
-set notimeout
+" set notimeout
 set ttimeout
 set ttimeoutlen=200
 
@@ -77,6 +77,15 @@ autocmd InsertLeave * set iminsert=0 " Disable capslock when leaving insert mode
 " highlight all the trailing whitespace
 command ShowTrailingWS /\s\+$
 
+" remap the esc key
+inoremap jk <ESC>
+
+" remap a couple of other hard to reach keys
+inoremap uu _
+inoremap UU -
+inoremap Uu =
+inoremap uU =
+
 " -------------------------------- File Handling ---------------------------{{{1
 "
 " Hide buffer instead of unloading it when swapping buffers
@@ -122,6 +131,10 @@ set incsearch
 
 " highlight all matches of a search
 set hlsearch
+
+" make searching case insensitive unless there is a capital letter in the string
+set ignorecase
+set smartcase
 
 " -------------------------------- Indentation and Spacing -----------------{{{1
 "
