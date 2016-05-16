@@ -1,5 +1,5 @@
 " -------------------------------- General ---------------------------------{{{1
-"
+
 " Disable compatiblity with vi
 set nocompatible
 
@@ -24,6 +24,7 @@ set listchars=tab:>-,trail:-
 set nowrap
 
 " -------------------------------- Vundle ----------------------------------{{{1
+
 filetype off
 
 " set the runtime path to include Vundle and initialize
@@ -48,7 +49,7 @@ Plugin 'Conque-GDB'
 call vundle#end()
 
 " -------------------------------- Text Editing and Motion -----------------{{{1
-"
+
 " allow backspace/del over autoindent, line breaks, and start of insert action
 set backspace=indent,eol,start
 
@@ -87,7 +88,7 @@ inoremap Uu =
 inoremap uU =
 
 " -------------------------------- File Handling ---------------------------{{{1
-"
+
 " Hide buffer instead of unloading it when swapping buffers
 set hidden
 
@@ -95,7 +96,7 @@ set hidden
 set confirm
 
 " -------------------------------- User Interface --------------------------{{{1
-"
+
 " use a better commandline completion
 set wildmenu
 
@@ -125,7 +126,7 @@ else
 end
 
 " -------------------------------- Searching -------------------------------{{{1
-"
+
 " highlight matches as a search command is typed
 set incsearch
 
@@ -137,7 +138,7 @@ set ignorecase
 set smartcase
 
 " -------------------------------- Indentation and Spacing -----------------{{{1
-"
+
 " enable filetype-specific indentation
 filetype indent on
 
@@ -151,7 +152,7 @@ set softtabstop=2
 set expandtab
 
 " -------------------------------- Colors and Fonts ------------------------{{{1
-"
+
 " enable syntax highlighting
 syntax on
 
@@ -166,7 +167,7 @@ execute "set colorcolumn=" . join(range(81,335), ',')
 highlight ColorColumn ctermbg=234 guibg=#111111
 
 " -------------------------------- Filetype-Specific Behavior --------------{{{1
-"
+
 " enable filetype-specific plugins
 filetype plugin on
 
