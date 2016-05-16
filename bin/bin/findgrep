@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# print usage info if there are too few input arguments
+if (( $# < 2 ))
+then
+  echo "Usage: findgrep [findOptions] filenames... [grepOptions] searchString"
+  exit
+fi
+
+# get the 'find'-related arguments
+parsingFilenames=false
+while (( $# > 1 ))
+do
+  arg=$1
+
+  if [[ ${arg:0:1} == "-" ]]
+  then
+    if [[ $parsingFilenames = "true" ]]
+    then
+      break
+    else
+      findOptions=arg
+    fi
+  else
+    parsingFilenames=true
+    filenames=( "${filenames[@]}" "$arg" )
+  fi
+
+  shift
+done
+
+# if filenames is empty, print usage info and quit
+
+# create the command line string for find and grep
+cmd="find . -iname \"${filenames[0]}\" "
+unset filenames[0]
+
+for filename in ${filenames[@]}
+do
+  cmd="$cmd -or -iname $filename "
+done
+
+cmdFull="$cmd -print0 | xargs -0 grep -H $@"
+
+# run the command
+echo $cmdFull
+
+set -x
+$cmd -print0 | xargs -0 grep -H $@
+
+# syntax=bash
