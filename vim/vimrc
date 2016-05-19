@@ -45,8 +45,13 @@ Plugin 'scrooloose/nerdtree'
 " Conque GDB
 Plugin 'Conque-GDB'
 
+" camelcasemotion
+Plugin 'bkad/camelcasemotion'
+
 " All of the plugins must be added before this line
 call vundle#end()
+
+call camelcasemotion#CreateMotionMappings('<leader>')
 
 " -------------------------------- Text Editing and Motion -----------------{{{1
 
