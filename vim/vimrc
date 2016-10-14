@@ -82,7 +82,8 @@ endfor
 autocmd InsertLeave * set iminsert=0 " Disable capslock when leaving insert mode
 
 " highlight all the trailing whitespace
-command ShowTrailingWS /\s\+$
+command! ShowTrailingWhiteSpace /\s\+$
+command! DeleteTrailingWhiteSpace :%s/\s\+$//
 
 " remap the esc key
 inoremap jk <ESC>
