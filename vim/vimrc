@@ -43,15 +43,16 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'scrooloose/nerdtree'
 
 " Conque GDB
-Plugin 'Conque-GDB'
+"Plugin 'Conque-GDB'
 
-" camelcasemotion
-Plugin 'bkad/camelcasemotion'
+" wordmotion
+Plugin 'chaoren/vim-wordmotion'
+
+" EastMotion
+Plugin 'easymotion/vim-easymotion'
 
 " All of the plugins must be added before this line
 call vundle#end()
-
-call camelcasemotion#CreateMotionMappings('<leader>')
 
 " -------------------------------- Text Editing and Motion -----------------{{{1
 
