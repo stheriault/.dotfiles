@@ -36,18 +36,25 @@ path=$(echo $path | sed -e "s!$HOME!~!");
 # recuresively shorten the directories starting from the left, until the number
 # of chars in the path is less than maxChars
 
-function makeShorter() # $1 maxChars, $2 path
+function makeShorter()
 {
-  if (( ${#2} > "$1" )); then
-    shortened=$(echo $2 | sed -re "s!([^/])[^/]{1,}/!\1/!")
-    if [[ $2 == $shortened ]]; then
-      echo -en $2
+  maxChars=$1
+  shift
+
+  IFS=' '
+  remain=$*
+
+
+  if (( ${#remain} > "$maxChars" )); then
+    shortened=$(echo $remain | sed -re "s!([^/])[^/]{1,}/!\1/!")
+    if [[ $remain == $shortened ]]; then
+      echo -en $remain
     else
-      echo -en $(makeShorter $1 $shortened)
+      echo -en $(makeShorter $maxChars "$shortened")
     fi
     #echo -en $shortened
   else
-    echo -en "$2"
+    echo -en "$remain"
   fi
 }
 
