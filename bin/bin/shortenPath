@@ -6,7 +6,7 @@
 
 # default values for number of chars to shortent to and the path to shorten
 path=$(pwd)
-maxChars=40
+maxChars=60
 
 # parse the commandline inputs
 while [[ $# > 0 ]]
