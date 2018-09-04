@@ -23,6 +23,8 @@ set listchars=tab:>-,trail:-,nbsp:%
 " disable wrapping
 set nowrap
 
+" use the system clipboard when yanking or deleting
+set clipboard=unnamed
 " -------------------------------- Vundle ----------------------------------{{{1
 
 filetype off
@@ -51,8 +53,27 @@ Plugin 'chaoren/vim-wordmotion'
 " EastMotion
 Plugin 'easymotion/vim-easymotion'
 
+" vim-signature
+Plugin 'kshenoy/vim-signature'
+
+" vim-colors-solarized
+Plugin 'altercation/vim-colors-solarized'
+
+" distinguished colorscheme
+Plugin 'lokaltog/vim-distinguished'
+
+" wombat colorscheme
+Plugin 'wombat256.vim'
+
+" jellybeans colorscheme
+Plugin 'nanotech/jellybeans.vim'
+
 " All of the plugins must be added before this line
 call vundle#end()
+
+" -------------------------------- wordmotion Plugin Config ----------------{{{1
+
+let g:wordmotion_prefix = '<Leader>'
 
 " -------------------------------- Text Editing and Motion -----------------{{{1
 
@@ -66,8 +87,8 @@ set pastetoggle=<F11>
 " which is the default
 map Y y$
 
-" map Ctrl-o to add a blank line below the current
-nmap <C-o> mzA<CR><Esc>k`z
+" add a blank line below the current
+nmap <enter> o<esc>k
 
 " split the line at the cursor position, opposite of Shift-J
 nmap <C-J> i<CR><Esc>k$
@@ -93,6 +114,8 @@ inoremap uu _
 inoremap UU -
 inoremap Uu =
 inoremap uU =
+
+"inoremap <A-u> <C-o>gUB
 
 " -------------------------------- File Handling ---------------------------{{{1
 
@@ -164,10 +187,9 @@ set expandtab
 syntax on
 
 " colors
-" TODO is the number of colors correct?
-set t_Co=256
 set background=dark
-colorscheme desert
+" let g:solarized_termcolors=256
+colorscheme wombat256mod
 
 " Create a warning after 80 characters
 execute "set colorcolumn=" . join(range(81,335), ',')
