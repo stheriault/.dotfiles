@@ -25,55 +25,6 @@ set nowrap
 
 " use the system clipboard when yanking or deleting
 set clipboard=unnamed
-" -------------------------------- Vundle ----------------------------------{{{1
-
-filetype off
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" snipMate
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-
-" NERD tree
-Plugin 'scrooloose/nerdtree'
-
-" Conque GDB
-"Plugin 'Conque-GDB'
-
-" wordmotion
-Plugin 'chaoren/vim-wordmotion'
-
-" EastMotion
-Plugin 'easymotion/vim-easymotion'
-
-" vim-signature
-Plugin 'kshenoy/vim-signature'
-
-" vim-colors-solarized
-Plugin 'altercation/vim-colors-solarized'
-
-" distinguished colorscheme
-Plugin 'lokaltog/vim-distinguished'
-
-" wombat colorscheme
-Plugin 'wombat256.vim'
-
-" jellybeans colorscheme
-Plugin 'nanotech/jellybeans.vim'
-
-" All of the plugins must be added before this line
-call vundle#end()
-
-" -------------------------------- wordmotion Plugin Config ----------------{{{1
-
-let g:wordmotion_prefix = '<Leader>'
 
 " -------------------------------- Text Editing and Motion -----------------{{{1
 
@@ -188,8 +139,6 @@ syntax on
 
 " colors
 set background=dark
-" let g:solarized_termcolors=256
-colorscheme wombat256mod
 
 " Create a warning after 80 characters
 execute "set colorcolumn=" . join(range(81,335), ',')

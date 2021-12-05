@@ -1,0 +1,9 @@
+#!/bin/bash
+dotfiles=`dirname $0`
+pushd $dotfiles > /dev/null
+for folder in */
+do
+    stowFolder=`basename $folder`
+    stow -R -d $dotfiles -t ~ $stowFolder
+done
+popd > /dev/null
