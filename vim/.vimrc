@@ -149,4 +149,3 @@ highlight ColorColumn ctermbg=234 guibg=#111111
 " enable filetype-specific plugins
 filetype plugin on
 
-" vim:foldmethod=marker:foldlevel=0
