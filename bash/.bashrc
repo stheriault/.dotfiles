@@ -15,15 +15,6 @@ if [ -f /etc/bashrc ]; then
   . /etc/bashrc   # --> Source /etc/bashrc, if present.
 fi
 
-#-------------- Path -------------------------------------------------------{{{1
-# TODO move to .profile??
-# add ~/bin to the path
-PATH=$PATH:$HOME/bin
-
-#-------------- ENVIRONMENTAL VARIABLES ------------------------------------{{{1
-# TODO move to .profile??
-export EDITOR=vim # TODO there are other svneditor,giteditor,visual, etc
-
 #-------------- HISTORY ---------------------------------------------------
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
