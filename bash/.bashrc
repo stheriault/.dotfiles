@@ -152,6 +152,7 @@ PS1="$PS1_user$PS1_host$PS1_dir"
 
 
 #-------------- Extra Stuff ------------------------------------------------{{{1
-
-
-# vim:foldmethod=marker:foldlevel=0
+# source the bash file that is not saved in the .dotfiles repo
+if [ -f ~/.bash_local ]; then
+    . ~/.bash_local
+fi
